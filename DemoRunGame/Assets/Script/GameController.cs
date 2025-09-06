@@ -19,11 +19,6 @@ public class GameController : MonoBehaviour
         respawnPosEnemy = transform.Find("RespawnEnemy").transform.position;
     }
 
-    void Update()
-    {
-        
-    }
-
     public void GameClear()
     {
         text.SetText("Clear");
@@ -39,7 +34,7 @@ public class GameController : MonoBehaviour
     public void GameStart()
     {
         player = Instantiate(prefabPlayer, respawnPosPlayer, Quaternion.identity);
-        //enemy = Instantiate(prefabEnemy, respawnPosEnemy, Quaternion.identity);
+        enemy = Instantiate(prefabEnemy, respawnPosEnemy, Quaternion.identity);
         text.SetText("");
         buttonStart.SetActive(false);
     }
