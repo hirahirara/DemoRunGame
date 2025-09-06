@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
     public float speed;
     private Rigidbody rigidbody;
     private GameController gameController;
-    private Vector3 moveX;
-    private Vector3 moveZ;
+    private float moveX;
+    private float moveZ;
 
     private void Awake()
     {
@@ -26,37 +26,38 @@ public class Player : MonoBehaviour
         if (Input.GetAxis("Horizontal") > 0)
         {
             // 右
-            moveX = Vector3.right;
+            moveX = 1;
         }
         else if (Input.GetAxis("Horizontal") < 0)
         {
             // 左
-            moveX = Vector3.left;
+            moveX = -1;
         }
         else
         {
-            moveX = Vector3.zero;
+            moveX = 0;
         }
 
         if (Input.GetAxis("Vertical") > 0)
         {
             // 前
-            moveZ = Vector3.forward;
+            moveZ = 1;
         }
         else if (Input.GetAxis("Vertical") < 0)
         {
             // 後
-            moveZ = Vector3.back;
+            moveZ = -1;
         }
         else
         {
-            moveZ = Vector3.zero;
+            moveZ = 0;
         }
     }
 
     private void FixedUpdate()
     {
-        rigidbody.velocity = (moveX + moveZ) * speed;
+        Vector3 move = new (moveX, 0, moveZ);
+        rigidbody.velocity = move * speed;
     }
 
     private void OnTriggerEnter(Collider other)
